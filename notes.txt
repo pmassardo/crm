@@ -25,7 +25,16 @@ bundle install
 
 rake db:migrate
 
-# use sorcery for the user
+# start use sorcery gem for the user
+
+  gem "sorcery"
+
+  bundle install
+
+  rails generate sorcery:install - basic installation for authentication and user generation
+
+# start use sorcery for the user
+
 
 # rails g model Account account_type_id:integer name:string phone:string
 # has many
