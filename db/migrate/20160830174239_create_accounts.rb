@@ -1,6 +1,6 @@
-class CreateAcccounts < ActiveRecord::Migration
+class CreateAccounts < ActiveRecord::Migration
   def change
-    create_table :acccounts do |t|
+    create_table :accounts do |t|
       t.references :account_type, index: true, foreign_key: true
       t.references :user, index: true, foreign_key: true
       t.string :name
