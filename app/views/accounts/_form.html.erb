@@ -1,0 +1,51 @@
+<%= form_for [@account] do |f| %>
+
+  <% if @account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+      <% @account.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reward.errors.count, "error") %> prohibited this account from being saved:</h2>
+      <ul>
+        <% @reward.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone %>
+    <%= f.telephone_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :account_type_id %><br>
+    <% account_type_array = AccountType.all.map { |account_type| [account_type.name, account_type.id]} %>
+    <%= f.select :account_type_id, options_for_select(account_type_array) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :notes %>
+    <%= f.text_area :notes %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
