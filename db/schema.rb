@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20160830174239) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "acccounts", force: :cascade do |t|
+  create_table "accounts", force: :cascade do |t|
     t.integer  "account_type_id"
     t.integer  "user_id"
     t.string   "name"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20160830174239) do
     t.datetime "updated_at",      null: false
   end
 
-  add_index "acccounts", ["account_type_id"], name: "index_acccounts_on_account_type_id", using: :btree
-  add_index "acccounts", ["user_id"], name: "index_acccounts_on_user_id", using: :btree
+  add_index "accounts", ["account_type_id"], name: "index_accounts_on_account_type_id", using: :btree
+  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
 
   create_table "account_types", force: :cascade do |t|
     t.string   "name"
@@ -51,6 +51,6 @@ ActiveRecord::Schema.define(version: 20160830174239) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
-  add_foreign_key "acccounts", "account_types"
-  add_foreign_key "acccounts", "users"
+  add_foreign_key "accounts", "account_types"
+  add_foreign_key "accounts", "users"
 end
