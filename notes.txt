@@ -35,10 +35,16 @@ rake db:migrate
 
 # start use sorcery for the user
 
-
-# rails g model Account account_type_id:integer name:string phone:string
+# Account model creation process
+# rails g model Acccount account_type:references user:references name:string phone:string notes:text
 # belongs_to
 # foreign key
+
+# create the controller and forms for accounts
+#   - forms create/update/destroy were deleted
+#   - actions index new create edit update destroy
+# rails g controller Accounts index new create edit update destroy
+
 
 # rails g model Contact account_id:integer first_name:string last_name:string phone:string
 # belongs_to
