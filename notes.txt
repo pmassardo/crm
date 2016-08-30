@@ -1,0 +1,40 @@
+Designed Models...
+
+# diagram - done
+
+# create the project
+rails _4.2.6_ new crm
+
+# add postgres gem 'pg' gemfile
+# add add puma for potential deployment env gem 'puma' gemfile
+bundle install
+
+# change database.yml to reflect the use of pg - postgresql
+#  default: &default
+#   adapter: postgresql
+#   encoding: unicode
+#   database: crm
+#   pool: 5
+#   timeout: 5000
+
+# add the two main primary tables/models - Y
+# rails g model AccountType name:string - Y
+# rails g model AppointmentType name:string - Y
+
+# created seeds in the seeds.rb file # rake db:seed
+
+rake db:migrate
+
+# use sorcery for the user
+
+# rails g model Account account_type_id:integer name:string phone:string
+# has many
+# foreign key
+
+# rails g model Contact account_id:integer first_name:string last_name:string phone:string
+# has many
+# foreign key
+
+# rails g model Appointment contact_id:integer user_id:integer appointment_type_id:integer start_time: end_time:
+# has many
+# foreign key
