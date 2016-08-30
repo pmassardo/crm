@@ -10,6 +10,7 @@
 AccountType.destroy_all
 AccountType.create(name: 'Lead')
 AccountType.create(name: 'Account')
+AccountType.create(name: 'In-Active') # used instead of delete
 
 AppointmentType.destroy_all
 AppointmentType.create(name: 'Phone')
