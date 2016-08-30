@@ -4,10 +4,9 @@
   <title>CRM</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-
   <%= csrf_meta_tags %>
-
 </head>
+
 <body>
   <header>
     <nav>
@@ -25,17 +24,11 @@
     </nav>
   </header>
   <body>
-    <% if flash[:alert] == flash[:notice] %>
-      <p id="alert"><%= flash[:alert] %></p>
-    <% elsif flash[:alert] != flash[:notice] %>
-      <% if flash[:alert]  %>
-        <p id="alert"><%= flash[:alert] %></p>
-      <% end  %>
 
-      <% if flash[:notice]  %>
-        <p id="notice"><%= flash[:notice] %></p>
-      <% end  %>
-    <% end  %>
+  <% if flash[:notice]  %>
+    <p id="noticea"><%= flash[:notice] %></p>
+  <% end  %>
+
     <section>
       <div class="container">
         <%= yield %>
