@@ -37,13 +37,13 @@ rake db:migrate
 
 
 # rails g model Account account_type_id:integer name:string phone:string
-# has many
+# belongs_to
 # foreign key
 
 # rails g model Contact account_id:integer first_name:string last_name:string phone:string
-# has many
+# belongs_to
 # foreign key
 
 # rails g model Appointment contact_id:integer user_id:integer appointment_type_id:integer start_time: end_time:
-# has many
+# belongs_to
 # foreign key
