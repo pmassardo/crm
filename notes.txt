@@ -36,7 +36,7 @@ rake db:migrate
 # start use sorcery for the user
 
 # Account model creation process
-# rails g model Acccount account_type:references user:references name:string phone:string notes:text
+# rails g model Account account_type:references user:references name:string phone:string notes:text
 # belongs_to
 # foreign key
 
