@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root :to => 'user_sessions#new'
 
+  resources :contacts  # index new create edit update accounts destroy
   resources :accounts  # index new create edit update accounts destroy
   resources :users # index new create edit update accounts destroy
 
