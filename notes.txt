@@ -6,6 +6,11 @@ Designed Models...
 rails _4.2.6_ new crm
 
 # add postgres gem 'pg' gemfile
+
+# launch psql server --- psql -d crm
+
+psql -d public
+
 # add add puma for potential deployment env gem 'puma' gemfile
 bundle install
 
@@ -38,15 +43,13 @@ rake db:migrate
 # Account model creation process
 # rails g model Account account_type:references user:references name:string phone:string notes:text
 # belongs_to
-# foreign key
-
 # create the controller and forms for accounts
 #   - forms create/update/destroy were deleted
 #   - actions index new create edit update destroy
 # rails g controller Accounts index new create edit update destroy
 
 
-# rails g model Contact account_id:integer first_name:string last_name:string phone:string
+# rails g model contact account:references first_name:string last_name:string phone:string notes:text
 # belongs_to
 # foreign key
 
