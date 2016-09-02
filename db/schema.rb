@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160901034131) do
+ActiveRecord::Schema.define(version: 20160902112252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,14 +41,37 @@ ActiveRecord::Schema.define(version: 20160901034131) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "appointments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "appointment_type_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.text     "notes"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "appointments", ["appointment_type_id"], name: "index_appointments_on_appointment_type_id", using: :btree
+  add_index "appointments", ["user_id"], name: "index_appointments_on_user_id", using: :btree
+
+  create_table "attendants", force: :cascade do |t|
+    t.integer  "appointment_id"
+    t.integer  "contact_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "attendants", ["appointment_id"], name: "index_attendants_on_appointment_id", using: :btree
+  add_index "attendants", ["contact_id"], name: "index_attendants_on_contact_id", using: :btree
+
   create_table "contacts", force: :cascade do |t|
     t.integer  "account_id"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "phone"
     t.text     "notes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "email"
     t.boolean  "active",     default: true
   end
@@ -67,5 +90,9 @@ ActiveRecord::Schema.define(version: 20160901034131) do
 
   add_foreign_key "accounts", "account_types"
   add_foreign_key "accounts", "users"
+  add_foreign_key "appointments", "appointment_types"
+  add_foreign_key "appointments", "users"
+  add_foreign_key "attendants", "appointments"
+  add_foreign_key "attendants", "contacts"
   add_foreign_key "contacts", "accounts"
 end
