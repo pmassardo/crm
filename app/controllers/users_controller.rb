@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :require_login, only: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -31,7 +32,7 @@ class UsersController < ApplicationController
 
         session[:user_id] = @user.id
 
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to accounts_path, notice: 'Login successful' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
