@@ -44,15 +44,19 @@ rake db:migrate
 # rails g model Account account_type:references user:references name:string phone:string notes:text
 # belongs_to
 # create the controller and forms for accounts
+#   - forms index/new/create/edit/update/destroy
 #   - forms create/update/destroy were deleted
 #   - actions index new create edit update destroy
 # rails g controller Accounts index new create edit update destroy
 
-
 # rails g model contact account:references first_name:string last_name:string phone:string notes:text
 # belongs_to
-# foreign key
+# add column - rails g migration AddEmailToContacts email:string
+# create the controller and forms for contacts
+#   - forms index/new/create/edit/update/destroy
+#   - forms create/update/destroy were deleted
+#   - actions index new create edit update destroy
+# rails g controller Contacts index new create edit update destroy
 
-# rails g model Appointment contact_id:integer user_id:integer appointment_type_id:integer start_time: end_time:
+# rails g model appointment user:references appointment_type:references start_time:datetime end_time:datetime notes:text
 # belongs_to
-# foreign key
