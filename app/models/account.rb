@@ -2,8 +2,11 @@ class Account < ActiveRecord::Base
   belongs_to :account_type
   belongs_to :user
 
-  # future relationships
-  has_many :contacts
-  # has_many :appointments, through: :contacts, foreign_key: 'account_id'
+  has_many :contacts, autosave: true
+
+  accepts_nested_attributes_for :contacts, reject_if: :all_blank, allow_destroy: true
+
+  validates :name, presence: true
+  validates :phone, presence: true, format: { with: /\d{3}-\d{3}-\d{4}/}
 
 end
