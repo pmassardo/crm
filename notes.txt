@@ -60,3 +60,10 @@ rake db:migrate
 
 # rails g model appointment user:references appointment_type:references start_time:datetime end_time:datetime notes:text
 # belongs_to
+# rails g migration RemoveContactIdFromAppointments
+# def change
+#   remove_column :products, :part_number, :string
+# end
+
+# rails g model attendant appointment:references contact:references
+# belongs_to
