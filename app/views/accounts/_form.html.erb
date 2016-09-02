@@ -14,9 +14,9 @@
 
   <% if @account.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@reward.errors.count, "error") %> prohibited this account from being saved:</h2>
+      <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
       <ul>
-        <% @reward.errors.full_messages.each do |msg| %>
+        <% @account.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -30,13 +30,12 @@
 
   <div class="field">
     <%= f.label :phone %>
-    <%= f.telephone_field :phone %>
+    <%= f.telephone_field :phone, placeholder: "Phone" %>
   </div>
 
   <div class="field">
     <%= f.label :account_type_id %><br>
-    <% account_type_array = AccountType.all.map { |account_type| [account_type.name, account_type.id]} %>
-    <%= f.select :account_type_id, options_for_select(account_type_array) %>
+    <%= f.collection_select(:account_type_id, AccountType.all, :id, :name) %>
   </div>
 
   <div class="field">
@@ -44,8 +43,31 @@
     <%= f.text_area :notes %>
   </div>
 
+  <div class="contacts">
+    <% count=0 %>
+    <ul class='contact_list' style="list-style: none;">
+        <%= f.fields_for :contacts do |contact_fields| %>
+        <li>
+          <div class="contact">
+            <div class="field">
+              <%= contact_fields.text_field :first_name , placeholder: "First Name..." %>
+              <%= contact_fields.text_field :last_name , placeholder: "Last Name..." %>
+              <%= contact_fields.text_field :phone , placeholder: "Phone Number..." %>
+              <%= contact_fields.text_field :email , placeholder: "Email Name..." %>
+              <% if(@account.contacts[count].id!=nil) %>
+                <%= link_to "Delete", [@account, @account.contacts[count]], method: :delete, data: {confirm: "Are you sure you want to delete this ?"} %>
+              <% end %>
+            </div>
+            <div class="field">
+              <%= contact_fields.text_area :notes , placeholder: "Notes..." %>
+            </div>
+          </div>
+          <% count=count+1 %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
-
 <% end %>
