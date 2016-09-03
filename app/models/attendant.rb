@@ -1,11 +1,8 @@
 class Attendant < ActiveRecord::Base
-  belongs_to :appointment
+  belongs_to :appointment , :class_name => Appointment, :foreign_key => "appointment_id"
   belongs_to :contact, :class_name => Contact, :foreign_key => "contact_id"
 
-  # belongs_to :appointment_type, :class_name => AppointmentType, :foreign_key => "appointment_type_id"
-  # delegate :name, :to => :appointment_type
-
-  # allw access to the contact data
+  # allow access to the contact data
   # and prefix it with the model name
   # so first_name will be contact_first_name
   # phone will be contact_phone
