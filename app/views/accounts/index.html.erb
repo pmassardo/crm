@@ -1,6 +1,23 @@
 
+  <h2>Accounts</h2>
+
   <% @accounts.each do |account| %>
     <ul>
       <li><%= link_to account.name + ' ' + account.phone , edit_account_path(account) %> </li>
     </ul>
   <% end %>
+
+  <h2>Appointments</h2>
+
+
+    <ul>
+      <% @appointments.each do |appointment| %>
+      <li><%= appointment.id.to_s + ' ' + appointment.appointment_type_name + ' ' + appointment.start_time.to_s + ' ' + appointment.end_time.to_s  %> </li>
+      <h3>Who will be there!</h3>
+      <ul>
+        <% appointment.attendants.each do |attendant| %>
+        <li>la<%= attendant.contact_id %><%= attendant.contact_first_name %><%= attendant.contact_last_name %><%= attendant.contact_phone %></li>
+        <% end %>
+      </ul>
+      <% end %>
+    </ul>
