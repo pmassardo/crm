@@ -1,12 +1,14 @@
 class AccountsController < ApplicationController
   def index
     @accounts = Account.where(user: current_user)
-  #  @contacts = Account.where(user: current_user)
+    @appointments = Appointment.where(user: current_user)
+    # binding.pry
   end
 
   def new
     @account = Account.new
     @account.contacts.build
+    # @account.contacts[0].appointments.build
     # binding.pry
   end
 
@@ -27,28 +29,43 @@ class AccountsController < ApplicationController
   end
 
   def edit
+    
       @account = Account.find(params[:id])
 
       @account.contacts.build()
+
+      @account.contacts.each { |contact|
+
+        contact.appointments.build
+
+      }
 
   end
 
   def update
 
-    # get the account
-    @account = Account.find(params[:id])
-
-    # update the account
-    if @account.update_attributes(account_params())
-      # if it updates
-      # return it to the users accounts list
-      # redirect_to accounts_path
-      # render  :edit
-      redirect_to edit_account_path(@account)
+    # logger.debug params[:selected_contacts]
+    # logger.debug params[:schedule_appointment]
+    if (params[:schedule_appointment])
+      redirect_to appointments_new_path(selected_contacts: params[:selected_contacts])
     else
-      # if it does not update
-      # send them back to the edit screen
-      render  :edit
+      # get the account
+      @account = Account.find(params[:id])
+      # logger.debug params[:id]
+
+      # update the account
+      if @account.update_attributes(account_params())
+        # if it updates
+        # return it to the users accounts list
+        # redirect_to accounts_path
+        # render  :edit
+        redirect_to edit_account_path(@account)
+      else
+        # if it does not update
+        # send them back to the edit screen
+        render  :edit
+      end
+
     end
 
   end
