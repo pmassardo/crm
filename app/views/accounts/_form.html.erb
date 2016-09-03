@@ -45,11 +45,14 @@
 
   <div class="contacts">
     <% count=0 %>
+  <% selected_contacts = [] %>
     <ul class='contact_list' style="list-style: none;">
         <%= f.fields_for :contacts do |contact_fields| %>
         <li>
           <div class="contact">
             <div class="field">
+
+              <%= check_box_tag 'selected_contacts[]', @account.contacts[count].id -%>
               <%= contact_fields.text_field :first_name , placeholder: "First Name..." %>
               <%= contact_fields.text_field :last_name , placeholder: "Last Name..." %>
               <%= contact_fields.text_field :phone , placeholder: "Phone Number..." %>
@@ -68,6 +71,17 @@
     </ul>
   </div>
   <div class="actions">
+
+
+    <%= submit_tag 'Schedule Appointment', name: 'schedule_appointment' %>
+
+
+
+  </div>
+  <div class="actions">
     <%= f.submit %>
   </div>
+
+
+
 <% end %>
