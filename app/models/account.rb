@@ -5,9 +5,6 @@ class Account < ActiveRecord::Base
   belongs_to :user
 
   has_many :contacts, autosave: true
-
-  # has_many :attendants, through: :contacts
-
   accepts_nested_attributes_for :contacts, reject_if: :all_blank, allow_destroy: true
 
   validates :name, presence: true
