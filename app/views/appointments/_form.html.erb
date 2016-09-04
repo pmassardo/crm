@@ -1,0 +1,71 @@
+<%= form_for [@appointment] do |f| %>
+<h4>Appointment</h4>
+    <% if @appointment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+        <ul>
+          <% @appointment.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <% if @appointment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this account from being saved:</h2>
+        <ul>
+          <% @appointment.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :appointment_date %>
+      <%= f.date_field :appointment_date %>
+    </div>
+
+    <div class="field">
+      <%= f.label :start_time %>
+      <%= f.select(:start_time, Appointment.times.map{|k,v| [v,k]}) %>
+    </div>
+
+    <div class="field">
+      <%=  f.label :end_time %>
+      <%= f.select(:end_time, Appointment.times.map{|k,v| [v,k]}) %>
+    </div>
+
+    <div class="field">
+      <%= f.label :phone %>
+      <%= f.text_area :notes, placeholder: "Notes..." %>
+    </div>
+
+    <div class="field">
+      <%= f.label :appointment_type_id %><br>
+      <%= f.collection_select(:appointment_type_id, AppointmentType.all, :id, :name) %>
+    </div>
+
+    <ul class='attendant_list' style="list-style: none;">
+        <%= f.fields_for :attendants do |attendant_fields| %>
+        <li>
+          <div class="attendant">
+            <div class="field">
+              <%= attendant_fields.hidden_field :contact_id %>
+              <%= attendant_fields.object.contact_first_name %>
+              <%= attendant_fields.object.contact_last_name %>
+              <%= attendant_fields.object.contact_phone %>
+              <%= attendant_fields.object.contact_email %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+<% end %>

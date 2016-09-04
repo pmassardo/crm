@@ -1,0 +1,84 @@
+<%= form_for [@account] do |f| %>
+
+  <div class="account set-left">
+    <h4>Account</h4>
+    <% if @account.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+        <ul>
+        <% @account.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <% if @account.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+        <ul>
+          <% @account.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :phone %>
+      <%= f.telephone_field :phone, placeholder: "Phone" %>
+    </div>
+    <div class="field">
+      <%= f.label :account_type_id %>
+      <%= f.collection_select(:account_type_id, AccountType.all, :id, :name) %>
+    </div>
+    <div class="field">
+      <%= f.label :notes %>
+      <%= f.text_area :notes %>
+    </div>
+  </div>
+
+  <div class="contacts set-left">
+
+    <% count=0 %>
+    <h4>Contacts</h4>
+    <ul class='contact_list' style="list-style: none;">
+        <%= f.fields_for :contacts do |contact_fields| %>
+        <li>
+          <div class="contact">
+              <div class="field">
+                <% if(@account.contacts[count].id!=nil) %>
+                  <%= check_box_tag 'selected_contacts[]', @account.contacts[count].id -%>
+                <% end %>
+                <%= contact_fields.text_field :first_name , placeholder: "First Name..." %>
+                <%= contact_fields.text_field :last_name , placeholder: "Last Name..." %>
+              </div>
+              <div class="field">
+                <%= contact_fields.text_field :phone , placeholder: "Phone Number..." %>
+                <%= contact_fields.text_field :email , placeholder: "Email..." %>
+                <% if(@account.contacts[count].id!=nil) %>
+                  <%= link_to "Delete", [@account, @account.contacts[count]], method: :delete, data: {confirm: "Are you sure you want to delete this ?"} %>
+                <% end %>
+              </div>
+              <div class="field">
+                <%= contact_fields.text_area :notes , placeholder: "Notes..." %>
+              </div>
+          </div>
+          <% count=count+1 %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="actions set-bottom">
+      <%= f.submit %>
+      <%= submit_tag 'Schedule Appointment', name: 'schedule_appointment' %>
+  </div>
+
+
+<% end %>

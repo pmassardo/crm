@@ -30,6 +30,8 @@ gem 'pg'
 # user login logic
 gem "sorcery"
 
+gem 'bootstrap-sass', '~> 3.3.6'
+
 # end - added by Paul
 
 # Use ActiveModel has_secure_password
@@ -49,6 +51,10 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+
+  gem 'pry-rails'
+
+gem 'pry-byebug'
 
   # gem 'webrick'
 
