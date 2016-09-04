@@ -17,11 +17,14 @@ class AppointmentsController < ApplicationController
 
   def edit
 
-    logger.debug 'parms ' + params.inspect
+    logger.debug 'TEST CODE parms ' + params.inspect
 
     @appointment = Appointment.find(params[:id])
 
-    logger.debug '@appointment ' + @appointment.inspect
+    # binding.pry
+    @appointment.attendants.build
+    # binding.pry
+    logger.debug 'TEST CODE @appointment ' + @appointment.inspect
 
     # binding.pry
 
@@ -54,7 +57,7 @@ class AppointmentsController < ApplicationController
     @appointment.user = current_user
 
     if @appointment.save
-      redirect_to appointments_edit_path(id: @appointment.id)
+      redirect_to edit_appointment_path(id: @appointment.id)
     else
       render  :new
     end
