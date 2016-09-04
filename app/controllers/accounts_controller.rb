@@ -1,7 +1,11 @@
 class AccountsController < ApplicationController
   def index
+
     @accounts = Account.where(user: current_user)
-    @appointments = Appointment.where(user: current_user)
+    @appointments = Appointment.where(user: current_user).order(appointment_date: :asc).order(start_time: :asc)
+    @contacts = Contact.joins(:account).where(' accounts.user_id=' + current_user.id.to_s)
+
+    #.order(created_at: :asc)
     # binding.pry
   end
 
@@ -51,7 +55,7 @@ class AccountsController < ApplicationController
     # logger.debug params[:selected_contacts]
     # logger.debug params[:schedule_appointment]
     if (params[:schedule_appointment])
-      redirect_to appointments_new_path(selected_contacts: params[:selected_contacts])
+      redirect_to new_appointment_path(selected_contacts: params[:selected_contacts])
     else
       # get the account
       @account = Account.find(params[:id])
