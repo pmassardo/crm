@@ -1,5 +1,5 @@
 <%= form_for [@appointment] do |f| %>
-
+<h4>Appointment</h4>
     <% if @appointment.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this account from being saved:</h2>

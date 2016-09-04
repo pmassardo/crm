@@ -1,6 +1,6 @@
 <%= form_for [@contact] do |f| %>
 
-  <h3>Contact</h3>
+  <h4>Contact</h4>
 
     <% if @contact.errors.any? %>
       <div id="error_explanation">
@@ -43,6 +43,10 @@
 
     <div class="field">
       <%= f.text_field :email , placeholder: "Email..." %>
+    </div>
+
+    <div class="field">
+      <%= f.text_area :notes , placeholder: "Notes..." %>
     </div>
 
     <div class="actions">
