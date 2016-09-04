@@ -1,8 +1,17 @@
 class ContactsController < ApplicationController
+
+  def index
+    @contacts = Contact.joins(:account).where(' accounts.user_id=' + current_user.id.to_s)
+  end
+
   def destroy
+    
     @account = Account.find(params[:account_id])
-    @contact = @account.contacts.find(params[:id])
-    if @contact.destroy
+    @contact = Contact.find(params[:id])
+
+    @contact.active = false
+
+    if @contact.save
       redirect_to edit_account_path(@account)
     else
       redirect_to edit_account_path(@account)
