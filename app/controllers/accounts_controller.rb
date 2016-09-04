@@ -1,19 +1,17 @@
 class AccountsController < ApplicationController
   def index
 
-    @accounts = Account.where(user: current_user)
+    @accounts = Account.where(user: current_user).order(name: :asc)
     @appointments = Appointment.where(user: current_user).order(appointment_date: :asc).order(start_time: :asc)
-    @contacts = Contact.joins(:account).where(' accounts.user_id=' + current_user.id.to_s)
+    @contacts = Contact.joins(:account).where(' accounts.user_id=' + current_user.id.to_s).order("accounts.name asc").order(last_name: :asc).order(first_name: :asc)
 
-    #.order(created_at: :asc)
-    # binding.pry
   end
 
   def new
+
     @account = Account.new
     @account.contacts.build
-    # @account.contacts[0].appointments.build
-    # binding.pry
+
   end
 
   def create
