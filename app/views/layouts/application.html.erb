@@ -25,6 +25,7 @@
       <div class="collapse navbar-collapse" id="menuCollapse">
         <ul class="nav navbar-nav">
           <% if current_user %>
+            <li> <%= link_to "Dashboard", accounts_path %></li>
             <li> <%= link_to "Create Account", new_account_path %></li>
             <li> <%= link_to "Create Contact", new_contact_path %></li>
           <% end %>
