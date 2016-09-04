@@ -32,6 +32,8 @@ class AccountsController < ApplicationController
 
       @account = Account.find(params[:id])
 
+      # @account.contacts.find_by!('active = true')
+
       @account.contacts.build()
 
       @account.contacts.each { |contact|
@@ -39,6 +41,8 @@ class AccountsController < ApplicationController
         contact.appointments.build
 
       }
+
+      # binding.pry
 
   end
 
