@@ -55,7 +55,7 @@ class AccountsController < ApplicationController
     # logger.debug params[:selected_contacts]
     # logger.debug params[:schedule_appointment]
     if (params[:schedule_appointment])
-      redirect_to new_appointment_path(selected_contacts: params[:selected_contacts])
+      redirect_to new_appointment_path(selected_contacts: params[:selected_contacts],account_id: params[:id])
     else
       # get the account
       @account = Account.find(params[:id])
@@ -76,9 +76,6 @@ class AccountsController < ApplicationController
 
     end
 
-  end
-
-  def destroy
   end
 
   private
