@@ -30,6 +30,8 @@ gem 'pg'
 # user login logic
 gem "sorcery"
 
+gem 'bootstrap-sass', '~> 3.3.6'
+
 # end - added by Paul
 
 # Use ActiveModel has_secure_password
