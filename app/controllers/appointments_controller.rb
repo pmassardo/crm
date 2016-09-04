@@ -1,17 +1,32 @@
 class AppointmentsController < ApplicationController
 
+
   def new
 
-    @appointment = Appointment.new
-    @contacts = Contact.find(params[:selected_contacts].map(&:to_i))
+    logger.debug 'TEST CODE parms ' + params.inspect
 
-    @contacts.each { |contact|
+    if (params[:selected_contacts]!=nil)
 
-      @attendant = Attendant.new
-      @attendant.contact_id = contact.id
-      @appointment.attendants.push(@attendant)
+      @appointment = Appointment.new
+      @contacts = Contact.find(params[:selected_contacts].map(&:to_i))
 
-    }
+      @contacts.each { |contact|
+
+        @attendant = Attendant.new
+        @attendant.contact_id = contact.id
+        @appointment.attendants.push(@attendant)
+
+      }
+    else
+      # if it is coming from the account index page
+      if(params[:schedule_appointment]!=nil)
+        # send it back there
+        redirect_to accounts_path, notice: 'Please select at least one contact to make an appointment.'
+      else
+        # it is coming from the account page
+        redirect_to edit_account_path(id: params[:account_id]), notice: 'Please select at least one contact to make an appointment.'
+      end
+    end
 
   end
 
