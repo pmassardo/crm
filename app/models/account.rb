@@ -1,6 +1,6 @@
 class Account < ActiveRecord::Base
   belongs_to :account_type, :class_name => AccountType, :foreign_key => "account_type_id"
-  delegate :name, :to => :account_type, prefix: true
+  delegate :name, :to => :account_type, prefix: true, :allow_nil => true
 
   belongs_to :user
 
