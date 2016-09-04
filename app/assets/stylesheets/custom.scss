@@ -1,0 +1,52 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+li {
+  list-style: none;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: "Museo Sans","museo-sans",Helvetica,Roboto,Arial,sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #0d1921;
+    background: #fefefe;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+    text-indent: 10px;
+}
+
+
+.set-left{ float: left; width: 33%; position: relative; }
+.set-right{ float: right; width: 33%; position: relative; }
+.set-center{ display: inline-block; width: 33%; }
+
+
+//
+.li-reduce-indent{
+    margin-left:-30px;
+}
+
+// .set-right{
+//   float: right;
+// }
+//
+// .set-middle{
+//   display: inline-block;
+// }
+//
+// .set-left{
+//   float: left;
+//   position: relative;
+// }
+
+.set-bottom{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
