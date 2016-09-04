@@ -1,23 +1,49 @@
+<div class="index">
 
-  <h2>Accounts</h2>
+      <div class="col-md-4">
+        <h3>Accounts</h3>
 
-  <% @accounts.each do |account| %>
-    <ul>
-      <li><%= link_to account.name + ' ' + account.phone , edit_account_path(account) %> </li>
-    </ul>
-  <% end %>
-
-  <h2>Appointments</h2>
-
-
-    <ul>
-      <% @appointments.each do |appointment| %>
-      <li><%= appointment.id.to_s + ' ' + appointment.appointment_type_name + ' ' + appointment.start_time.to_s + ' ' + appointment.end_time.to_s  %> </li>
-      <h3>Who will be there!</h3>
-      <ul>
-        <% appointment.attendants.each do |attendant| %>
-        <li>la<%= attendant.contact_id %><%= attendant.contact_first_name %><%= attendant.contact_last_name %><%= attendant.contact_phone %></li>
+        <% @accounts.each do |account| %>
+          <!-- <ul> -->
+            <p><%= link_to account.name + ' ' + account.phone , edit_account_path(account) %> </p>
+          <!-- </ul> -->
         <% end %>
-      </ul>
-      <% end %>
-    </ul>
+      </div>
+
+      <div class="col-md-4">
+
+        <h3>Appointments</h3>
+
+        <ul>
+          <% @appointments.each do |appointment| %>
+
+            <li class="li-reduce-indent"><%= link_to appointment.appointment_type_name + ' ' + appointment.appointment_date.strftime("%e/%B/%Y").to_s + ' ' + Appointment.times[appointment.start_time]  , edit_appointment_path(appointment) %>
+            <h5>With...</h5>
+              <% appointment.attendants.each do |attendant| %>
+                <% if((attendant.contact!=nil))%>
+                  <p>
+                     <%= attendant.contact_first_name %>
+                     <%= attendant.contact_last_name %>
+                     <%= attendant.contact_phone %>
+                     <%= attendant.contact.account.name %>
+                  </p>
+                <% end %>
+              <% end %>
+            </li>
+            </br>
+          <% end %>
+
+        </ul>
+
+      </div>
+
+    <div class="col-md-4">
+        <h2>Contacts</h2>
+        <% @contacts.each do |contact| %>
+          <!-- <ul> -->
+            <p><%= link_to contact.first_name + ' ' + contact.last_name + ', ' + contact.account.name   , edit_contact_path(contact)%> </p>
+          <!-- </ul> -->
+        <% end %>
+    <div>
+
+  </div>
