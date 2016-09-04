@@ -8,6 +8,8 @@ class Appointment < ActiveRecord::Base
   has_many :attendants, autosave: true
   accepts_nested_attributes_for :attendants, reject_if: :all_blank, allow_destroy: true
 
+  has_many :contacts, through: :attendants
+
   validate :is_valid_date?
   validates :end_time, :numericality => {:greater_than_or_equal_to => :start_time, :message => " must be greater than start time!"  }
 
