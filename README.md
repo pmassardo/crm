@@ -1,12 +1,26 @@
 # crm
 
 Things I would change...
+
   1. use Rails only for the backend and jquery or react for the front end.
   2. add a roles to the user, to allow for supervisors, etc. Currently a user can only see their accounts, appointments, etc.
   3. spend more time on the front end. I did not have enough time to get a thorough look at the Statflo site to make my site look like the Statflo site. So, I bootstrap'd it and made a few slight modifications.
-
+  4. Maybe, eliminated primary tables AccountType and AppointmentType and just go with arrays storing just an integer in the database.
 
 Uses PostgreSQL, Rails 4.2.6, built on a mac using OS X El Capitan V 10.11.6
+
+The database design...
+
+![Database](/work/crm.jpg?raw=true "Database")
+
+If you are setup for PostgreSQL and Rails 4.2.6 on a mac then.
+
+- Clone the repo
+- Bundle install
+- rake db:migrate
+- rails server (it will be on localhost:3000)
+
+ I think thats it?
 
 taken from https://github.com/bitmakerlabs/rails-dev-setup-guide
 
@@ -30,7 +44,7 @@ It should look something like:
 /Users/username/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 Reloading your config has inserted /Users/username/.rbenv/shims to the beginning of your $PATH variable. This is necessary for rbenv to work its magic.
 
-![Database](/work/crm.jpg?raw=true "Database")
+
 
 Ruby
 
