@@ -1,5 +1,7 @@
 # crm
 
+  Heroku - https://serene-gorge-54750.herokuapp.com/
+
 Things I would change...
 
   1. use Rails only for the backend and jquery or react for the front end.
