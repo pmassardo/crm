@@ -1,4 +1,9 @@
 class AccountsController < ApplicationController
+
+  # this is the dashboard
+  # returns the current users accounts
+  # returns the users current appointments and order by appointment_date and start_time
+  # returns the users current contacts which are ordered by account_name, last_name , and first_name
   def index
 
     @accounts = Account.where(user: current_user).order(name: :asc)
@@ -7,6 +12,9 @@ class AccountsController < ApplicationController
 
   end
 
+  # create a instance of the new html package
+  # create an instance of an account
+  # build/create an instance of atleast one contact
   def new
 
     @account = Account.new
@@ -14,17 +22,21 @@ class AccountsController < ApplicationController
 
   end
 
+  # action to save the account
   def create
 
+    # put the params into a new account object
     @account = Account.new(account_params())
-    # binding.pry
 
+    # set the user data
     @account.user = current_user
 
+    # save
     if @account.save
-    # @account.contacts.build
+      # it does save redirect to the account edit
       redirect_to edit_account_path(@account)
     else
+      # or go back to the new page
       render  :new
     end
 
