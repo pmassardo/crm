@@ -27,7 +27,13 @@
           <% if current_user %>
             <li> <%= link_to "Dashboard", accounts_path %></li>
             <li> <%= link_to "Create Account", new_account_path %></li>
-            <li> <%= link_to "Create Contact", new_contact_path %></li>
+            <%
+              @accountcounts = Account.where(user: current_user)
+              logger.debug 'account count ==== ' +@accountcounts.length.to_s
+              if(@accountcounts.length>0)
+            %>
+              <li> <%= link_to "Create Contact", new_contact_path %></li>
+            <% end %>
           <% end %>
         </ul>
         <ul class="nav navbar-nav set-right">
