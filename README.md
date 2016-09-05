@@ -22,7 +22,8 @@ If you are setup for PostgreSQL and Rails 4.2.6 on a mac then.
 
  I think thats it?
 
-taken from https://github.com/bitmakerlabs/rails-dev-setup-guide
+---------------------------------------
+The following was taken from https://github.com/bitmakerlabs/rails-dev-setup-guide
 
 rbenv
 
@@ -108,3 +109,4 @@ Verify that Rails is there and that the version is 4.2.6. Now run:
 
 rails --version
 It should say Rails 4.2.6.
+---------------------------------------
